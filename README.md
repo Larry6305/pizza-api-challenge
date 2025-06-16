@@ -1,0 +1,202 @@
+# 🍕 Pizza Restaurant API
+
+A RESTful API for managing pizza restaurants, pizzas, and their prices using Flask and SQLAlchemy. Built following the MVC architecture. No frontend included — use Postman or `curl` to test.
+
+---
+
+## 📁 Project Structure
+
+.
+├── server/
+│ ├── app.py # App setup and Flask factory
+│ ├── config.py # DB configuration
+│ ├── models/ # SQLAlchemy models
+│ │ ├── restaurant.py
+│ │ ├── pizza.py
+│ │ └── restaurant_pizza.py
+│ ├── controllers/ # Route handlers (controllers)
+│ │ ├── restaurant_controller.py
+│ │ ├── pizza_controller.py
+│ │ └── restaurant_pizza_controller.py
+│ ├── seed.py # Seed data
+├── migrations/ # DB migrations
+├── challenge-1-pizzas.postman_collection.json
+└── README.md
+
+yaml
+Copy
+Edit
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/pizza-api-challenge.git
+cd pizza-api-challenge
+2. Create virtual environment and install dependencies
+bash
+Copy
+Edit
+pipenv install flask flask_sqlalchemy flask_migrate
+pipenv shell
+3. Set up the database
+bash
+Copy
+Edit
+export FLASK_APP=server/app.py
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+4. Seed the database
+bash
+Copy
+Edit
+python server/seed.py
+5. Run the server
+bash
+Copy
+Edit
+flask run
+🧪 Testing with Postman
+Open Postman
+
+Click Import
+
+Upload challenge-1-pizzas.postman_collection.json
+
+Use the collection to test all routes
+
+You can also test endpoints with curl.
+
+📬 API Endpoints Summary
+GET /restaurants
+Returns a list of all restaurants.
+
+Example response:
+
+json
+Copy
+Edit
+[
+  {
+    "id": 1,
+    "name": "Kiki's Pizza",
+    "address": "123 Main St"
+  }
+]
+GET /restaurants/<id>
+Returns details of one restaurant and its pizzas.
+
+If found:
+
+json
+Copy
+Edit
+{
+  "id": 1,
+  "name": "Kiki's Pizza",
+  "address": "123 Main St",
+  "pizzas": [
+    {
+      "id": 1,
+      "name": "Margherita",
+      "ingredients": "Tomato Sauce, Cheese, Basil"
+    }
+  ]
+}
+If not found:
+
+json
+Copy
+Edit
+{
+  "error": "Restaurant not found"
+}
+DELETE /restaurants/<id>
+Deletes a restaurant and all related restaurant-pizzas.
+
+If successful:
+204 No Content
+
+If not found:
+
+json
+Copy
+Edit
+{
+  "error": "Restaurant not found"
+}
+GET /pizzas
+Returns a list of all pizzas.
+
+Example:
+
+json
+Copy
+Edit
+[
+  {
+    "id": 1,
+    "name": "Margherita",
+    "ingredients": "Tomato Sauce, Cheese, Basil"
+  }
+]
+POST /restaurant_pizzas
+Creates a new association between a pizza and a restaurant.
+
+Request body:
+
+json
+Copy
+Edit
+{
+  "price": 5,
+  "pizza_id": 1,
+  "restaurant_id": 1
+}
+If successful:
+
+json
+Copy
+Edit
+{
+  "id": 4,
+  "price": 5,
+  "pizza_id": 1,
+  "restaurant_id": 1,
+  "pizza": {
+    "id": 1,
+    "name": "Margherita",
+    "ingredients": "Tomato Sauce, Cheese, Basil"
+  },
+  "restaurant": {
+    "id": 1,
+    "name": "Kiki's Pizza",
+    "address": "123 Main St"
+  }
+}
+If invalid:
+
+json
+Copy
+Edit
+{
+  "errors": ["Price must be between 1 and 30"]
+}
+✅ Validation Rules
+price (in RestaurantPizza) must be between 1 and 30
+
+GET and DELETE routes return 404 if the resource is not found
+
+🧼 Notes
+Built using Flask + SQLAlchemy
+
+Follows MVC structure
+
+Database: SQLite (for local testing)
+
+📌 Author
+Larry | Phase 4 Student 
