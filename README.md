@@ -33,9 +33,10 @@ Edit
 
 ### 1. Clone the repo
 
-``bash
+```bash
 git clone https://github.com/your-username/pizza-api-challenge.git
 cd pizza-api-challenge
+````
 
 ### 2. Create virtual environment and install dependencies
 
@@ -44,6 +45,7 @@ Copy
 Edit
 pipenv install flask flask_sqlalchemy flask_migrate
 pipenv shell
+``
 
 ### 3. Set up the database
 
