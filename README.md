@@ -36,27 +36,32 @@ Edit
 ```bash
 git clone https://github.com/your-username/pizza-api-challenge.git
 cd pizza-api-challenge
-2. Create virtual environment and install dependencies
-bash
+
+### 2. Create virtual environment and install dependencies
+
+'''bash
 Copy
 Edit
 pipenv install flask flask_sqlalchemy flask_migrate
 pipenv shell
-3. Set up the database
-bash
+### 3. Set up the database
+
+'''bash
 Copy
 Edit
 export FLASK_APP=server/app.py
 flask db init
 flask db migrate -m "Initial migration"
 flask db upgrade
-4. Seed the database
-bash
+### 4. Seed the database
+
+'''bash
 Copy
 Edit
 python server/seed.py
-5. Run the server
-bash
+### 5. Run the server
+
+'''bash
 Copy
 Edit
 flask run
@@ -186,17 +191,17 @@ Edit
 {
   "errors": ["Price must be between 1 and 30"]
 }
-✅ Validation Rules
+### ✅ Validation Rules
 price (in RestaurantPizza) must be between 1 and 30
 
 GET and DELETE routes return 404 if the resource is not found
 
-🧼 Notes
+### 🧼 Notes
 Built using Flask + SQLAlchemy
 
 Follows MVC structure
 
 Database: SQLite (for local testing)
 
-📌 Author
+### 📌 Author
 Larry | Phase 4 Student 
