@@ -39,16 +39,16 @@ cd pizza-api-challenge
 ````
 
 ### 2. Create virtual environment and install dependencies
-
+````
 '''bash
 Copy
 Edit
 pipenv install flask flask_sqlalchemy flask_migrate
 pipenv shell
-``
+````
 
 ### 3. Set up the database
-
+````
 '''bash
 Copy
 Edit
@@ -56,19 +56,23 @@ export FLASK_APP=server/app.py
 flask db init
 flask db migrate -m "Initial migration"
 flask db upgrade
+````
 ### 4. Seed the database
-
+````
 '''bash
 Copy
 Edit
 python server/seed.py
+````
 
 ### 5. Run the server
-
+````
 '''bash
 Copy
 Edit
 flask run
+````
+
 🧪 Testing with Postman
 Open Postman
 
@@ -85,7 +89,7 @@ GET /restaurants
 Returns a list of all restaurants.
 
 Example response:
-
+````
 json
 Copy
 Edit
@@ -195,6 +199,7 @@ Edit
 {
   "errors": ["Price must be between 1 and 30"]
 }
+````
 ### ✅ Validation Rules
 price (in RestaurantPizza) must be between 1 and 30
 
